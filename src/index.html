@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+  <head>
+    <title>FE:A Inheritance</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="inheritance.css" />
+  </head>
+  <body ng-app="inheritance">
+    <div id="content" ng-controller="InheritanceCtrl" ng-class="{xwide: parent.name == 'Sully' || parent.name == 'Donnel'}">
+      <h1 ng-click="select()">FE:A Inheritance</h1>
+      <!-- list the parents -->
+      <ul id="parents">
+        <li ng-repeat="character in cast | filter:{generation: 1}">
+          <span ng-click="select(character)" class="clickable" ng-class="{disabled: character == parent}">{{character.name}}</span>
+        </li>
+      </ul>
+
+      <!-- give some directions -->
+      <div class="directions" ng-hide="parent">
+        <hr/>
+
+        <h3>Details and directions</h3>
+
+        <p>
+          This web app was created as an enhancement to the <a href="http://serenesforest.net/fe13/children.html" >inheritance guide at Serenes Forest</a>,
+          a fanpage for Fire Emblem: Awakening. For detailed explanation of the inheritance mechanics and other info about the game, please visit the link.
+        </p>
+
+        <p>
+          To get going, simply click on the parent whose marriages you would like to view. Each valid spouse will be listed, along with details about
+          the child the marriage produces. He or she gains access to all of the listed class trees except for any restricted classes, listed in grayed-out
+          font. The child may inherit one skill from a restricted class from each parent. 
+        </p>
+
+        <p>
+          Maximum stat modifiers (mods) are also shown, just above the classes. Clicking on the name of an available class will highlight all occurences
+          of the selected class on the page. Furthermore, the mods section will display the maximum stats achievable when using the class, for each
+          applicable child.
+        </p>
+      </div>
+
+      <!-- list possible children -->
+      <ul id="children">
+        <li ng-repeat="spouse in cast | compatible:parent" ng-controller="ChildCtrl">
+          <div class="title-wrapper">
+            <h3>{{spouse.name}}</h3>
+            <div class="mods">{{mods() | labeled}}</div>
+          </div>
+
+          <span class="parent-wrapper">
+            <h4>{{child.parent.name + ' (' + child.name + ')'}}</h4>
+            <div ng-repeat="tree in classes.default" tree></div>
+            <div ng-repeat="tree in classes.default_restricted" tree disabled></div>
+          </span><span class="parent-wrapper">
+            <h4>{{parent.child && spouse.name || parent.name}}</h4>
+            <div ng-repeat="tree in classes.additional" tree></div>
+            <div class="tree disabled" ng-hide="classes.additional.length">(Nothing)<br/><br/><br/><br/><br/><br/><br/><br/><br/></div>
+            <div ng-repeat="tree in classes.additional_restricted" tree disabled></div>
+          </span>
+        </li>
+      </ul>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    <script src="data.js"></script>
+    <script src="inheritance.js"></script>
+  </body>
+</html>

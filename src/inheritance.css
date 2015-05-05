@@ -1,0 +1,104 @@
+
+body {
+  background: #ddd url('whitey.png') fixed;
+  color: #444;
+  font-family: tahoma, helvetica, arial;
+  margin: 0;
+}
+
+h1, #parents {
+  text-align: center;
+}
+
+#content {
+  width: 912px;
+  margin: 0 auto;
+}
+
+#content.xwide {
+  width: 1022px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+  overflow: hidden;
+}
+
+#parents {
+  margin: 0 auto;
+  padding: 0 8px;
+  width: 800px;
+}
+
+#parents li {
+  float: left;
+  line-height: 25px;
+  width: 100px;
+}
+
+#children li {
+  margin-top: 1.5em;
+}
+
+.title-wrapper {
+  overflow: hidden;
+}
+
+.title-wrapper h3 {
+  float: left;
+  margin: 0 8px;
+}
+
+.title-wrapper div {
+  text-align: center;
+  margin: 4px auto 0;
+  width: 500px;
+  font-size: 80%;
+}
+
+.parent-wrapper {
+  display: inline-block;
+  font-size: 80%;
+  overflow: hidden;
+  padding: 8px;
+}
+
+.parent-wrapper h4 {
+  text-align: center;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  margin: 0;
+}
+
+.tree {
+  float: left;
+  width: 110px;
+}
+
+a, .clickable {
+  color: #b05;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+a:hover, .clickable:hover {
+  color: #f39;
+}
+
+.disabled, .disabled:hover, .disabled .clickable {
+  color: #aaa;
+  cursor: default;
+  text-shadow: 1px 1px 1px #fff;
+}
+
+.selected, .selected:hover {
+  background-color: #458;
+  color: #fff;
+}
+
+hr {
+  border-color: #fff;
+  width: 60%;
+  margin-top: 1em;
+}
